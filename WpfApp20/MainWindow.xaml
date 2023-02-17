@@ -10,20 +10,25 @@
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <blazor:BlazorWebView HostPage = "wwwroot/_content/RazorClassLibrary20/index.html"   Services="{DynamicResource services}" >
-            <blazor:BlazorWebView.RootComponents>
-                <blazor:RootComponent Selector = "#app" ComponentType="{x:Type shared:App}" />
-            </blazor:BlazorWebView.RootComponents>
-        </blazor:BlazorWebView>
-        <!--<wv2:WebView2 Name = "webView" Source="https://localhost:7240"></wv2:WebView2>-->
-       
-    </Grid>
-    <!--<DockPanel>
+    <!--<StackPanel Orientation="Vertical" Background="Transparent">
+
+        
         <blazor:BlazorWebView HostPage = "wwwroot\index.html"   Services="{DynamicResource services}" >
             <blazor:BlazorWebView.RootComponents>
                 <blazor:RootComponent Selector = "#app" ComponentType="{x:Type shared:App}" />
             </blazor:BlazorWebView.RootComponents>
         </blazor:BlazorWebView>
-    </DockPanel>-->
+    </StackPanel>-->
+   
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="CadetBlue">
+            <Label></Label>
+            <Button Click="Button_Click" Margin="4" HorizontalAlignment="Right" Padding="4">LogOut</Button>
+        </StackPanel>
+        <blazor:BlazorWebView HostPage = "wwwroot\index.html"   Services="{DynamicResource services}" >
+            <blazor:BlazorWebView.RootComponents>
+                <blazor:RootComponent Selector = "#app" ComponentType="{x:Type shared:App}" />
+            </blazor:BlazorWebView.RootComponents>
+        </blazor:BlazorWebView>
+    </DockPanel>
 </Window>

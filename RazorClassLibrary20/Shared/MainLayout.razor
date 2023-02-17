@@ -1,5 +1,5 @@
 ﻿@inherits LayoutComponentBase
-
+@using System;
 <PageTitle>BlazorApp20</PageTitle>
 
 <div class="page">
@@ -9,8 +9,11 @@
 
     <main>
         <div class="top-row px-4">
-            <LoginControl />
-          @*  <a href="/login/">Login</a>
+            @if (AppDomain.CurrentDomain.FriendlyName == "BlazorApp20")
+            {
+                <LoginControl></LoginControl>
+            }
+            @*  <a href="/login/">Login</a>
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>*@
         </div>
 
@@ -19,3 +22,7 @@
         </article>
     </main>
 </div>
+@code {
+
+
+}

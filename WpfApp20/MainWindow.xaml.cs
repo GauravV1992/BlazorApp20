@@ -27,6 +27,7 @@ using System.Windows.Shapes;
 using Microsoft.AspNetCore.Hosting;
 using System.Configuration;
 using Microsoft.AspNetCore.Builder;
+using System.Net.NetworkInformation;
 
 namespace WpfApp20
 {
@@ -35,18 +36,28 @@ namespace WpfApp20
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly AppState _appState = new();
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show(
+            //    owner: this,
+            //    messageBoxText: $"Current counter value is: {_appState.Counter}",
+            //    caption: "Counter");
 
+            Login mainWindow = new Login();
+            mainWindow.Show();
+            this.Close();
+        }
         public IConfiguration _configuration { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             var serviceCollection = new ServiceCollection();
-
+            //lblEmail.Content = UserInfo.CustomerEmail;
+            //lblName.Content = UserInfo.CustomerName;
 
             //serviceCollection.AddBlazorWebView();
             serviceCollection.AddWpfBlazorWebView();
-
-
 
             serviceCollection.AddSingleton<WeatherForecastService>();
 
@@ -59,17 +70,18 @@ namespace WpfApp20
             serviceCollection.AddScoped<AuthenticationStateProvider, ExternalAuthStateProvider>();
             serviceCollection.AddSingleton<AuthenticatedUser>();
             serviceCollection.AddScoped<HttpClient>();
+            serviceCollection.AddSingleton<AppState>(_appState);
             serviceCollection.AddScoped<IAccountService, AccountService>();
             //serviceCollection.AddSingleton<AuthenticatedUser>();
             serviceCollection.AddBlazorWebViewDeveloperTools();
             // Add services to the container.
-            serviceCollection.AddControllersWithViews();
-            serviceCollection.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(options =>
-            {
-                options.Cookie.Name = "myauth";
-                options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
-            });
+            //serviceCollection.AddControllersWithViews();
+            //serviceCollection.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //.AddCookie(options =>
+            //{
+            //    options.Cookie.Name = "myauth";
+            //    options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+            //});
             var services = serviceCollection.BuildServiceProvider();
 
             Resources.Add("services", services);
