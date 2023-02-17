@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+      <!--<UseRazorSourceGenerator>false</UseRazorSourceGenerator>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Pages\Login.cshtml.cs" />
+    <Compile Remove="Pages\Signinn.razor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Login.cshtml" />
+    <Content Remove="Pages\Login.razor" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <Compile Remove="Models\Login.cshtml.cs" />
+    <Compile Remove="Pages\Login.razor.cs" />
+  </ItemGroup>-->
+
+  <!--<ItemGroup>
+    <Content Remove="Models\Login.cshtml" />
+  </ItemGroup>-->
+  <ItemGroup>
+    <Content Update="wwwroot\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.RazorPages" Version="2.2.5" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+  </ItemGroup>
+
+
+
+</Project>
